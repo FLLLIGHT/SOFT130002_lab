@@ -6,7 +6,9 @@ div#topHeaderRow {
 }
 
 .price { 
-
+    color: red;
+    font-size: 18px;
+    font-weight: bold;
 }
 
 .similarTitle {  }
@@ -18,12 +20,71 @@ div#topHeaderRow {
 footer {
    margin-top: 1em;
    background-color: #E7E7E7;
-
+    clear: both;
 }
 
 .tight-form-group {  }
 
 #copyrightRow { 
-    background-color: #3A3A3A; 
-
+    background-color: #3A3A3A;
+    clear: both;
 }
+
+#topHeaderRow li{
+    float: right;
+    margin: 15px 30px 0 0;
+}
+#logoRow h1{
+    display: inline;
+}
+#logoRow div{
+    display: inline;
+}
+#logoRow form{
+    display: inline;
+}
+#logoRow .col-lg-6{
+    float: right;
+    width: 25%;
+}
+#logoRow .input-group{
+    display: inline-table;
+}
+.img-thumbnail{
+    float: left;
+}
+.column2{
+    float: left;
+    width: 46%;
+    display: inline;
+    margin: 0 0 0 27px;
+}
+.similar{
+    clear: left;
+    float: left;
+}
+
+.similar div{
+    display: inline-block;
+    float: left;
+}
+.panel-body{
+    clear: left;
+}
+.column3{
+    float: right;
+    width: 15%;
+}
+.foot{
+    float: left;
+    width: 25%;
+}
+.listMe li{
+    list-style-type: none;
+    margin: 25px 0 0 -25px;
+}
+/*head, body{
+    margin: 0 5%;
+}
+
+ */
