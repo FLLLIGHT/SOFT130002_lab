@@ -1,0 +1,91 @@
+<html>
+<head>
+<title>Chapter 10</title>
+    <link rel="stylesheet" href="lab7.css">
+    <script type="text/javascript" src="http://code.jquery.com/jquery-3.1.0.min.js"></script>
+    <script>
+    $(document).ready(function() {
+            let smallImgs = $("#thumbBox img");
+            let sliders = $("#sliderBox input");
+            let slidersLabel = $("#sliderBox span");
+
+            for (let index = 0; index <= smallImgs.length - 1; index++) {
+                smallImgs[index].onclick = function () {
+                    $("#imgManipulated img")[0].src = smallImgs[index].src.replace("small","medium");
+                    $("#imgManipulated span")[0].innerText = String(smallImgs[index].title);
+                    $("#imgManipulated em")[0].innerText = String(smallImgs[index].alt);
+                }
+            }
+
+            for (let index = 0; index <= sliders.length - 2; index++) {
+                sliders.bind("input propertychange",function(event){
+                    changeFilter();
+                });
+            }
+
+            $('#resetFilters')[0].addEventListener("click",resetFilter);
+
+            function changeFilter() {
+                let filter = "";
+                for (let index = 0; index <= sliders.length-2; index++) {
+                    slidersLabel[index].innerText = String(sliders[index].value);
+                    if ($("#sliderBox p")[index].innerText.toString().replace(/[0-9]/g,'') === '%'){
+                        filter = filter + sliders[index].id.toString().replace("slider","") + "(" + (Number($("#sliderBox p")[index].innerText.toString().replace(/[%]/g,''))/100).toString() + ") ";
+                    }
+                    else {
+                        filter = filter + sliders[index].id.toString().replace("slider", "") + "(" + sliders[index].value.toString() + $("#sliderBox p")[index].innerText.toString().replace(/[0-9]/g, '') + ") ";
+                    }
+                }
+                $("#imgManipulated img")[0].style.webkitFilter = filter;
+                $("#imgManipulated img")[0].style.filter = filter;
+            }
+
+            function resetFilter() {
+                sliders[0].value = 100;
+                sliders[1].value = 100;
+                sliders[2].value = 100;
+                sliders[3].value = 0;
+                sliders[4].value = 0;
+                sliders[5].value = 0;
+                changeFilter();
+            }
+        });
+    </script>
+
+</head>    
+<body class="tiled">
+<header>
+    <h1>Art Filters</h1>
+</header>
+<main>
+    <div id="sliderBox">
+        <form>
+           <label>Opacity: </label><p><input type="range" id="sliderOpacity" min="0" max="100" value="100" class="sliders" /><span id="Opacity">100</span>%</p>
+           <label>Saturation: </label><p><input type="range" id="sliderSaturate" min="1" max="300" value="100" class="sliders"/><span id="Saturation">100</span>%</p>
+           <label>Brightness: </label><p><input type="range" id="sliderBrightness" min="0" max="300" value="100" class="sliders" /><span id="Brightness">100</span>%</p>
+           <label>Hue Rotate: </label><p><input type="range" id="sliderHue-rotate" min="0" max="360" value="0" class="sliders" /><span id="Hue-rotate">0</span>deg</p>
+           <label>Grayscale: </label><p><input type="range" id="sliderGrayscale" min="0" max="100" value="0" class="sliders"/><span id="Grayscale">0</span>%</p>
+           <label>Blur: </label><p><input type="range" id="sliderBlur" min="0" max="10" value="0" class="sliders" /><span id="Blur">0</span>px</p>
+           <p><input type="button" id="resetFilters" value="Reset"></p>
+        </form>    
+    </div>
+    <figure id="imgManipulated">
+        <img src="images/medium/painting1.jpg" > 
+        <figcaption>
+            <em>Still Life with Flowers in a Glass Vase</em> <br>
+            <span>Jan Davidsz. de Heem, 1650 - 1683</span>
+        </figcaption>
+    </figure>   
+    <div id="thumbBox">
+        <div><img src="images/small/painting1.jpg"  alt="Still Life with Flowers in a Glass Vase" title="Jan Davidsz. de Heem, 1650 - 1683"/></div>
+        <div><img src="images/small/painting2.jpg"  alt="Portrait of Alida Christina Assink" title="Jan Adam Kruseman, 1833"/></div>
+        <div><img src="images/small/painting3.jpg"  alt="Self-portrait" title="Vincent van Gogh, 1887"/></div>
+        <div><img src="images/small/painting4.jpg"  alt="William II, Prince of Orange, and his Bride, Mary Stuart" title="Anthony van Dyck, 1641"/></div>
+        <div><img src="images/small/painting5.jpg"  alt="Milkmaid" title="Johannes Vermeer, c. 1660"/></div>
+    </div>
+</main>
+<script>
+
+</script>    
+</body>   
+</html>
